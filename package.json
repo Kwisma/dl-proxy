@@ -5,7 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js"
+    "app": "node src/app.js"
+    "start": "pm2 start ./config/pm2/pm2.json",
+    "stop": "pm2 stop ./config/pm2/pm2.json",
   },
   "repository": {
     "type": "git",

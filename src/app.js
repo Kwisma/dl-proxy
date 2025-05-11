@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import cdnRoutes from './routes/cdnRoutes.js';
-import './config/logger.js';
-import './services/redisService.js';
+import cdnRoutes from './core/routes/cdnRoutes.js';
+import './core/logs/logger.js';
+import './core/services/redisService.js';
 
 const app = express();
 
