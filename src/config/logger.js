@@ -1,0 +1,77 @@
+import log4js from 'log4js';
+
+log4js.configure({
+  appenders: {
+    console: {
+      type: 'console',
+      layout: {
+        type: 'pattern',
+        pattern: '%[[GitHub CDN][%d{hh:mm:ss.SSS}][%4.4p]%] %m'
+      }
+    },
+    fileAppender: {
+      type: 'file',
+      filename: 'logs/console.log',
+      alwaysIncludePattern: true,
+      layout: {
+        type: 'pattern',
+        pattern: '[GitHub CDN][%d{hh:mm:ss.SSS}][%4.4p] %m'
+      }
+    },
+    command: {
+      type: 'dateFile',
+      filename: 'logs/command',
+      pattern: 'yyyy-MM-dd.log',
+      numBackups: 15,
+      alwaysIncludePattern: true,
+      layout: {
+        type: 'pattern',
+        pattern: '[%d{hh:mm:ss.SSS}][%4.4p] %m'
+      }
+    },
+    error: {
+      type: 'file',
+      filename: 'logs/error.log',
+      alwaysIncludePattern: true,
+      layout: {
+        type: 'pattern',
+        pattern: '[%d{hh:mm:ss.SSS}][%4.4p] %m'
+      }
+    }
+  },
+  categories: {
+    default: { appenders: ['console', 'fileAppender'], level: 'info' },
+    command: { appenders: ['console', 'command'], level: 'warn' },
+    error: { appenders: ['console', 'command', 'error'], level: 'error' }
+  }
+});
+
+const defaultLogger = log4js.getLogger('message');
+const commandLogger = log4js.getLogger('command');
+const errorLogger = log4js.getLogger('error');
+
+global.logger = {
+  trace() {
+    defaultLogger.trace.call(defaultLogger, ...arguments);
+  },
+  debug() {
+    defaultLogger.debug.call(defaultLogger, ...arguments);
+  },
+  info() {
+    defaultLogger.info.call(defaultLogger, ...arguments);
+  },
+  warn() {
+    commandLogger.warn.call(defaultLogger, ...arguments);
+  },
+  error() {
+    errorLogger.error.call(errorLogger, ...arguments);
+  },
+  fatal() {
+    errorLogger.fatal.call(errorLogger, ...arguments);
+  },
+  mark() {
+    errorLogger.mark.call(commandLogger, ...arguments);
+  }
+};
+
+export default logger;
