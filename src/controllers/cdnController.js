@@ -1,33 +1,31 @@
-import handleCache from '../services/cacheService.js';
-import fetchFromGitHub from '../services/githubService.js';
+import { handleCache, fetchFromGitHub } from '../index.js';
 import mime from 'mime-types';
 import path from 'path';
 
 const handleFileRequest = async (user, repo, branch, filePath, cacheKey, req, res) => {
   try {
     const rawCacheKey = `/gh/${user}/${repo}/${branch}/${filePath}`;
-    const safeCacheKey = rawCacheKey.replace(/[\/\\]/g, '_');
     const shouldRefresh = req.query.qure !== undefined;
     const contentType = mime.lookup(filePath);
 
-    logger.info(`开始处理文件请求：${rawCacheKey}`);
+    logger.debug(`开始处理文件请求：${rawCacheKey}`);
 
     if (shouldRefresh) {
-      logger.info(`强制刷新缓存：${rawCacheKey}`);
-      await handleCache.refreshCache(safeCacheKey);
+      logger.debug(`强制刷新缓存：${rawCacheKey}`);
+      await handleCache.refreshCache(rawCacheKey);
     }
 
-    const cached = await handleCache.get(safeCacheKey);
+    const cached = await handleCache.get(rawCacheKey);
     if (cached) {
       logger.info(`缓存命中：${rawCacheKey}`);
       return sendOptimizedResponse(res, cached, filePath, contentType);
     }
 
-    logger.info(`缓存未命中，从GitHub获取文件：${filePath}`);
+    logger.debug(`未缓存，从GitHub获取文件：${rawCacheKey}`);
 
     const { data, cacheDuration } = await fetchFromGitHub(user, repo, branch, filePath, rawCacheKey);
-    await handleCache.set(safeCacheKey, cacheDuration, data);
-    logger.info(`文件获取成功，已缓存。缓存有效期：${cacheDuration}秒`);
+    await handleCache.set(rawCacheKey, cacheDuration, data);
+    logger.debug(`文件获取成功，已缓存。缓存有效期：${cacheDuration}秒`);
 
     sendOptimizedResponse(res, data, filePath, contentType);
 
@@ -41,8 +39,7 @@ const handleFileRequest = async (user, repo, branch, filePath, cacheKey, req, re
  */
 function sendOptimizedResponse(res, data, filePath, contentType) {
   res.setHeader('Content-Type', contentType);
-  logger.info(`响应 Content-Type 设置为：${contentType}`);
-  logger.info(`发送数据，长度：${data.length}字符`);
+  logger.debug(`发送数据，长度：${data.length}字符`);
   res.send(data);
 }
 

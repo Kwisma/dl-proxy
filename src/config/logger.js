@@ -1,5 +1,6 @@
 import log4js from 'log4js';
-
+import { Config } from '../index.js';
+const cfg = await Config.getConfig()
 log4js.configure({
   appenders: {
     console: {
@@ -15,7 +16,7 @@ log4js.configure({
       alwaysIncludePattern: true,
       layout: {
         type: 'pattern',
-        pattern: '[GitHub CDN][%d{hh:mm:ss.SSS}][%4.4p] %m'
+        pattern: '[GitHub CDN][%d{yyyy-MM-dd hh:mm:ss}][%4.4p] %m'
       }
     },
     command: {
@@ -40,7 +41,7 @@ log4js.configure({
     }
   },
   categories: {
-    default: { appenders: ['console', 'fileAppender'], level: 'info' },
+    default: { appenders: ['console', 'fileAppender'], level: cfg.logLevel },
     command: { appenders: ['console', 'command'], level: 'warn' },
     error: { appenders: ['console', 'command', 'error'], level: 'error' }
   }

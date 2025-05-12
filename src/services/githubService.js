@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { determineCacheDuration } from '../../utils/helpers.js';
+import { determineCacheDuration } from '../index.js';
 
 // 构建 GitHub URL
 const constructGitHubUrl = (user, repo, branch, filePath) => {

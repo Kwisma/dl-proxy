@@ -1,19 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import cdnRoutes from './core/routes/cdnRoutes.js';
-import './core/logger/logger.js';
-//import './core/services/redisService.js';
+import { Config, router} from './src/index.js';
 
 const app = express();
+const cfg = await Config.getConfig()
 
 // 中间件
 app.use(cors());
 app.use(express.raw());
 
 // 路由
-app.use('/', cdnRoutes);
+app.use('/', router);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || cfg.port;
 app.listen(port, () => {
   logger.info(`服务器本地地址: http://localhost:${port}`);
 });

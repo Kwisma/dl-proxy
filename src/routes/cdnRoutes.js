@@ -1,5 +1,5 @@
 import express from 'express';
-import { handleFileRequest } from '../controllers/cdnController.js';
+import { handleFileRequest } from '../index.js';
 
 const router = express.Router();
 
