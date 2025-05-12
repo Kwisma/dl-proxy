@@ -2,12 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import cdnRoutes from './core/routes/cdnRoutes.js';
 import './core/logger/logger.js';
-import './core/services/redisService.js';
+//import './core/services/redisService.js';
 
 const app = express();
 
 // 中间件
 app.use(cors());
+app.use(express.raw());
 
 // 路由
 app.use('/', cdnRoutes);

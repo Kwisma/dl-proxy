@@ -4,7 +4,6 @@ import { determineCacheDuration } from '../../utils/helpers.js';
 // 构建 GitHub URL
 const constructGitHubUrl = (user, repo, branch, filePath) => {
   const baseUrl = `https://raw.githubusercontent.com/${user}/${repo}`;
-  logger.info(`写入缓存: ${baseUrl}/${branch}/${filePath}`)
   if (branch.startsWith('refs/heads/')) {
     return `${baseUrl}/${branch}/${filePath}`;
   }
@@ -12,11 +11,17 @@ const constructGitHubUrl = (user, repo, branch, filePath) => {
 };
 
 // 从 GitHub 获取文件
-const fetchFromGitHub = async (user, repo, branch, filePath) => {
+const fetchFromGitHub = async (user, repo, branch, filePath, rawCacheKey) => {
   const url = constructGitHubUrl(user, repo, branch, filePath);
-  const response = await axios.get(url, { responseType: 'arraybuffer' });
+  const response = await axios.get(url, { 
+    headers: {
+      'User-Agent': 'Mozilla/5.0'
+    },
+    responseType: 'arraybuffer'
+  });
+  logger.info(`写入缓存: ${rawCacheKey}`)
   return {
-    data: response.data,
+    data: Buffer.from(response.data),
     cacheDuration: determineCacheDuration(filePath)
   };
 };
