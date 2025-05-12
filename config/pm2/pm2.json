@@ -1,8 +1,8 @@
 {
   "apps": [
     {
-      "name": "GitHub_CDN",
-      "script": "./src/app.js",
+      "name": "gh_CDN",
+      "script": "./index.js",
       "max_memory_restart": "512M",
       "restart_delay": 60000
     }

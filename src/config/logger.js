@@ -10,7 +10,7 @@ log4js.configure({
       type: 'console',
       layout: {
         type: 'pattern',
-        pattern: '%[[GitHub CDN][%d{hh:mm:ss.SSS}][%4.4p]%] %m'
+        pattern: '%[[ghCDN][%d{hh:mm:ss.SSS}][%4.4p]%] %m'
       }
     },
     fileAppender: {
@@ -19,7 +19,7 @@ log4js.configure({
       alwaysIncludePattern: true,
       layout: {
         type: 'pattern',
-        pattern: '[GitHub CDN][%d{yyyy-MM-dd hh:mm:ss}][%4.4p] %m'
+        pattern: '[ghCDN][%d{yyyy-MM-dd hh:mm:ss}][%4.4p] %m'
       }
     },
     command: {
