@@ -2,3 +2,4 @@ port: 3000
 logLevel: info
 cacheDuration: 3600 # 1小时
 defaultTTL: 43200 # 12小时
+githubproxy: https://ghfast.top

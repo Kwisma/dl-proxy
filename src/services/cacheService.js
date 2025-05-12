@@ -42,7 +42,6 @@ const handleCache = {
       return await fs.readFile(filePath);
     } catch (err) {
       if (err.code === 'ENOENT') {
-        logger.warn(`未缓存：${cacheKey}`);
         return null;
       }
       throw err;

@@ -1,4 +1,4 @@
-import { handleCache, fetchFromGitHub } from '../index.js';
+import { handleCache, fetchFromGitHub, Config } from '../index.js';
 import mime from 'mime-types';
 import path from 'path';
 
@@ -7,6 +7,7 @@ const handleFileRequest = async (user, repo, branch, filePath, cacheKey, req, re
     const rawCacheKey = `/gh/${user}/${repo}/${branch}/${filePath}`;
     const shouldRefresh = req.query.qure !== undefined;
     const contentType = mime.lookup(filePath);
+    const cfg = await Config.getConfig()
 
     logger.debug(`开始处理文件请求：${rawCacheKey}`);
 
@@ -23,7 +24,7 @@ const handleFileRequest = async (user, repo, branch, filePath, cacheKey, req, re
 
     logger.debug(`未缓存，从GitHub获取文件：${rawCacheKey}`);
 
-    const { data, cacheDuration } = await fetchFromGitHub(user, repo, branch, filePath, rawCacheKey);
+    const { data, cacheDuration } = await fetchFromGitHub(user, repo, branch, filePath, rawCacheKey, cfg);
     await handleCache.set(rawCacheKey, cacheDuration, data);
     logger.debug(`文件获取成功，已缓存。缓存有效期：${cacheDuration}秒`);
 
