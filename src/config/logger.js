@@ -1,6 +1,9 @@
 import log4js from 'log4js';
 import { Config } from '../index.js';
 const cfg = await Config.getConfig()
+// 设置进程时区为中国标准时间
+process.env.TZ = 'Asia/Shanghai';
+
 log4js.configure({
   appenders: {
     console: {
