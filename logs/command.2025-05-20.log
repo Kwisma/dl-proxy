@@ -2441,3 +2441,13 @@
 [18:17:22.988][MARK] [Download] 开始下载: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs
 [18:17:24.065][MARK] [Download] 下载完成，写入文件: /root/my-project/cache/e06883bc0e163ead106df5e7ad8a6659
 [18:18:20.674][MARK] [Download] 下载完成，写入文件: /root/my-project/cache/729ca235c0c4de96bc9a1ba345589f2f
+[20:08:20.003][MARK] [Request] 收到请求 URL: https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/icon/webp/100/12306.webp
+[20:08:20.013][MARK] [Cache] 文件 /root/dl/cache/6729f355a1e93e488a34b1d2f8e9ca48 不存在
+[20:08:20.013][MARK] [Cache] 缓存无效，重新下载
+[20:08:20.014][MARK] [Download] 开始下载: https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/icon/webp/100/12306.webp
+[20:08:23.254][MARK] [Download] 下载完成，写入文件: /root/dl/cache/6729f355a1e93e488a34b1d2f8e9ca48
+[20:15:34.641][MARK] [Request] 收到请求 URL: https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/icon/webp/100/12306.webp
+[20:15:34.655][MARK] [Cache] 文件 /root/dl/cache/6729f355a1e93e488a34b1d2f8e9ca48 存在，已过期
+[20:15:34.656][MARK] [Cache] 缓存无效，重新下载
+[20:15:34.656][MARK] [Download] 开始下载: https://raw.githubusercontent.com/Kwisma/cf-worker-mihomo/main/icon/webp/100/12306.webp
+[20:15:40.533][MARK] [Download] 下载完成，写入文件: /root/dl/cache/6729f355a1e93e488a34b1d2f8e9ca48

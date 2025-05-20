@@ -1,0 +1,3 @@
+logLevel: info #日志等级
+cacheMaxAge: 60 # 缓存时间，单位分钟
+maxSize: 100 #缓存大小限制，单位MB

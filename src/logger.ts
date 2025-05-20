@@ -1,5 +1,5 @@
 import log4js from 'log4js';
-
+import { config } from './index.js';
 // 定义 logger 方法参数类型，这里用any[]，也可以细化为具体类型
 type LogMethod = (...args: any[]) => void;
 const logLevel = 'info'
@@ -59,7 +59,7 @@ async function createLogger() {
       }
     },
     categories: {
-      default: { appenders: ['console', 'fileAppender'], level: logLevel },
+      default: { appenders: ['console', 'fileAppender'], level: config.logLevel || 'info' },
       command: { appenders: ['console', 'command'], level: 'warn' },
       error: { appenders: ['console', 'command', 'error'], level: 'error' }
     }

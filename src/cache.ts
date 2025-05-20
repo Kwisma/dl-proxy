@@ -2,10 +2,11 @@ import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
 import { createHash } from 'crypto';
+import { config } from './index.js';
 
 export const CACHE_CONFIG = {
-  maxAge: 5 * 60 * 1000, // 5分钟
-  maxSize: 100 * 1024 * 1024, // 100MB
+  maxAge: config.cacheMaxAge * 60 * 1000,
+  maxSize: config.maxSize * 1024 * 1024,
 };
 
 export const CACHE_DIR = path.resolve(process.cwd(), 'cache');
