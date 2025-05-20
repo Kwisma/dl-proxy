@@ -3,5 +3,5 @@ node_modules/
 dump.rdb
 data/
 config/config/
-cache/
-dist/
+cache
+dist
