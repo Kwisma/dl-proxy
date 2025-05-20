@@ -4,7 +4,7 @@
     "module": "nodenext",
     "moduleResolution": "NodeNext",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,8 +15,8 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
+  "include": ["src", "index.ts"],
+  "exclude": ["node_modules", "dist"],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"

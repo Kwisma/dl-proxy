@@ -16,7 +16,7 @@ function readYamlConfig(filePath: string): Config {
     const content = fs.readFileSync(filePath, 'utf-8');
     return yaml.parse(content);
   } catch (e) {
-    console.warn(`无法读取配置文件 ${filePath}, 使用空配置`, e);
+    logger.warn(`无法读取配置文件 ${filePath}, 使用空配置`, e);
     return {};
   }
 }
