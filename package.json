@@ -1,43 +1,35 @@
 {
-  "name": "ghcdn",
-  "version": "1.1.9",
-  "description": "GitHub CDN Proxy Service",
-  "main": "app.js",
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "",
   "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "app": "node index.js",
-    "start": "pm2 start ./config/pm2/pm2.json",
-    "stop": "pm2 stop ./config/pm2/pm2.json",
-    "restart": "pm2 restart ./config/pm2/pm2.json",
-    "log": "node ./src/config/log.js"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'tsx' index.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kwisma/ghcdn.git"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^20.17.48",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.x"
   },
-  "keywords": [
-    "ghcdn",
-    "JSDMirror"
-  ],
-  "author": "Kwisma",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Kwisma/ghcdn/issues"
-  },
-  "homepage": "https://github.com/Kwisma/ghcdn#readme",
   "dependencies": {
-    "@koa/cors": "^5.0.0",
-    "@koa/router": "^13.1.0",
-    "axios": "^0.26.1",
-    "chokidar": "^4.0.3",
-    "cors": "^2.8.5",
-    "crypto": "^1.0.1",
-    "js-yaml": "^4.1.0",
+    "axios": "^1.9.0",
     "koa": "^3.0.0",
-    "koa-send": "^5.0.1",
-    "koa-static": "^5.0.0",
+    "koa-router": "^13.0.1",
     "log4js": "^6.9.1",
-    "mime-types": "^3.0.1",
-    "pm2": "^6.0.5"
+    "mime-types": "^3.0.1"
   }
 }

@@ -1,5 +1,7 @@
-logs/
-node_modules/
-dump.rdb
-data/
-config/config/
+./logs/
+./node_modules/
+./dump.rdb
+./data/
+./config/config/
+./cache
+./dist
